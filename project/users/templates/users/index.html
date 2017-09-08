@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>All Users</h1>
+<p>
+	<a href="{{url_for('users.new')}}"> Create new user </a>
+</p>
+
+{% for user in users %}
+	<p>
+		<img src="https://api.adorable.io/avatars/56/{{user.first_name}}@adorable.png"> </img>
+
+
+		{{user.first_name}}
+	</p>
+	<p>
+		<a href="{{url_for('users.show', id=user.id)}}"> User's Page </a>
+	</p>
+	<a href="{{url_for('messages.message_index', user_id=user.id)}}"> User's Messages </a>
+	<p>
+		<a href="{{url_for('users.edit', id=user.id)}}"> Edit User </a>
+	</p>
+
+{% endfor %}
+
+{% endblock %}

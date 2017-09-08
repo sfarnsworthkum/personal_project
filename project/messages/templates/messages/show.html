@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{user.first_name}} {{user.last_name}}'s Messages</h1>
+<p> {{ message.text }} </p>
+
+<form action="{{url_for('messages.show_message', user_id=message.user_id, id=message.id)}}?_method=DELETE" method="POST">
+	 {{delete_form.hidden_tag()}}
+	<button>DELETE ME</button>
+</form>
+<a href="{{url_for('messages.message_index', user_id=message.user_id)}}">Go back to all {{user.first_name}}'s messages </a>
+
+{% endblock %}

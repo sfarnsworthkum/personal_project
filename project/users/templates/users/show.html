@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<p>
+	<h1>{{user.first_name}} {{user.last_name}}'s page</h1>
+</p>
+<img src="https://api.adorable.io/avatars/200/{{user.first_name}}@adorable.png"> </img>
+
+<form action="{{url_for('users.show', id=user.id)}}?_method=DELETE" method="POST">
+	{{delete_form.hidden_tag()}}
+	<button>DELETE ME</button>
+</form>
+<a href="{{url_for('messages.message_index', user_id=user.id)}}">See {{user.first_name}}'s messages</a>
+<br />
+<a href="{{url_for('users.index')}}">Go back to all users</a>
+
+{% endblock %}

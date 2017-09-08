@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="{{url_for('messages.show_message', user_id=user.id, id=message.id)}}?_method=PATCH" method="POST">
+	{{form.hidden_tag()}}
+  {% for field in form if field.widget.input_type != 'hidden'%}
+  <p>
+    {{ field.label }}
+    {{ field }}
+    <span>
+      {% if field.errors %}
+        {% for error in field.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  {% endfor %}
+	<button>Update</button>
+</form>
+<form action="{{url_for('messages.show_message', user_id=message.user_id, id=message.id)}}?_method=DELETE" method="POST">
+	 {{delete_form.hidden_tag()}}
+	<button>DELETE ME</button>
+</form>
+<a href="{{url_for("messages.message_index", user_id=message.user_id)}}"> Go back to index </a>
+{% endblock %}
